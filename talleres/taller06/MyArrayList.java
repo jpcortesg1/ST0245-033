@@ -1,8 +1,6 @@
 package Taller6;
 import java.util.Arrays;
 
-
-
 public class MiArrayList {
     private int size;
     private static final int DEFAULT_CAPACITY = 10;
@@ -37,17 +35,18 @@ public class MiArrayList {
     }
 
     private void remover(int e){
-      int[]nuevo = elements.length - 1;
-      for(int i = e; i < elements.length; e++ ){
+      int[]nuevo = new int[size-1];
+      for(int i = e; i < size; e++ ){
         int aux = elements[e];
         int aux1 = elements[e+1];
         elements[e] = aux1;
         elements[e+1] = aux;
       }
 
-      for (int i = 0; i < elements.length-1; i++)
+      for (int i = 0; i < size-1; i++)
         nuevo[i] = elements[i];
       elements = nuevo;
+      size --;
     }
     
     /** 
@@ -83,7 +82,10 @@ public class MiArrayList {
     * Agrega un elemento e en la posición index de la lista
     *
     */
-    public void add(int index, int e) {
+    public void add (int index, int e) throws Exception {
+      if(index >= size)
+        throw new Exception("Index out of bounds exception index = "+i);
+      else
         elemnts[index] = e;
     } 
 
@@ -99,7 +101,6 @@ public class MiArrayList {
         }else{
           remover(index);
         }
-         size --;
-    }
-   
+    size --;
+    }   
 }
